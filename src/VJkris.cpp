@@ -9,7 +9,7 @@
 
 void VJkris::setup(){
     isPlaying = false;
-    title = "Idle";
+    title = "Kris";
     circleSize = 20;
 }
 
