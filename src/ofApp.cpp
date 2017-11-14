@@ -2,8 +2,8 @@
 #include "VJIdleSet.h"
 #include "VJSanie.h"
 #include "VJChris.h"
+#include "VJkris.h"
 #include "VJIce.h"
-
 //--------------------------------------------------------------
 void ofApp::setup(){
     
@@ -20,7 +20,7 @@ void ofApp::setup(){
     allSVJs.push_back( new BaseSet() ); // Qinqin
     allSVJs.push_back( new BaseSet() ); // Erica
     allSVJs.push_back( new VJIce() ); // Ice
-    allSVJs.push_back( new BaseSet() ); // Kris
+    allSVJs.push_back( new VJkris() ); // Kris
     
     for ( int i = 0; i< allSVJs.size(); i++ ) { allSVJs[i]->setup(); }
     
