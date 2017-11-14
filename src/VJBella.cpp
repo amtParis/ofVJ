@@ -10,7 +10,7 @@
 void VJBella::setup(){
     isPlaying = false;
     title = "*airh horns* v-v-vj beLLAAAAA *air horns*";
-    circleSize = 20;
+    circleSize = 10;
 }
 
 void VJBella::update(){
@@ -20,8 +20,10 @@ void VJBella::update(){
 
 void VJBella::draw(){
     //cout << "draw";
-    ofSetColor(0,0,0);
+    ofSetColor(240,240,240);
     ofDrawEllipse( mouseX, ofGetHeight()/2, 50 + circleSize, 50 + circleSize);
+    ofSetColor(50, 50, 50);
+    ofDrawRectangle(10, 10, ofGetWidth()/2, mouseY);
 }
 
 void VJBella::start(){
@@ -30,7 +32,7 @@ void VJBella::start(){
     ofAddListener(ofEvents().keyPressed, this, &VJBella::keyPressed);
     isPlaying = true;
     
-    ofSetBackgroundColor(255);
+    ofSetBackgroundColor(140, 0, 230);
 }
 
 void VJBella::pause(){
