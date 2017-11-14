@@ -3,6 +3,7 @@
 #include "VJSanie.h"
 #include "VJChris.h"
 #include "VJkris.h"
+#include "VJFF.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -11,14 +12,14 @@ void ofApp::setup(){
 
     currentSet = IDLE;
     //   IDLE = 0, TITLE, DASHA, SANIE, AMANDA, BELLA, QINQIN, ERICA, ICE, KRIS
-    allSVJs.push_back( new VJIdleSet() ); // Idle
+    allSVJs.push_back( new VJFF() ); // Idle
     allSVJs.push_back( new BaseSet() ); // Title / Chris
     allSVJs.push_back( new BaseSet() ); // Dasha
     allSVJs.push_back( new VJSanie() ); // Sanie
     allSVJs.push_back( new BaseSet() ); // Amanda
     allSVJs.push_back( new BaseSet() ); // Bella
     allSVJs.push_back( new BaseSet() ); // Qinqin
-    allSVJs.push_back( new BaseSet() ); // Erica
+    allSVJs.push_back( new VJFF() ); // Erica
     allSVJs.push_back( new BaseSet() ); // Ice
     allSVJs.push_back( new VJkris() ); // Kris
     
