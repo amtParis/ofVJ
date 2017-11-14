@@ -15,7 +15,6 @@ void ofApp::setup(){
     allSVJs.push_back( new BaseSet() ); // Title / Chris
     allSVJs.push_back( new BaseSet() ); // Dasha
     allSVJs.push_back( new VJSanie() ); // Sanie
-    allSVJs.push_back( new BaseSet() ); // Sanie
     allSVJs.push_back( new BaseSet() ); // Amanda
     allSVJs.push_back( new BaseSet() ); // Bella
     allSVJs.push_back( new BaseSet() ); // Qinqin
