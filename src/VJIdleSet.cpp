@@ -19,7 +19,6 @@ void VJIdleSet::update(){
 }
 
 void VJIdleSet::draw(){
-    //cout << "draw";
     ofSetColor(244,66,190);
     ofDrawEllipse( mouseX, ofGetHeight()/2, 50 + circleSize, 50 + circleSize);
 }
