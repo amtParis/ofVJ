@@ -1,10 +1,8 @@
 #include "ofApp.h"
 #include "VJIdleSet.h"
-<<<<<<< HEAD
 #include "VJSanie.h"
-=======
 #include "VJChris.h"
->>>>>>> 9d2cf4f65d7aac0ef51f458f88a5d476b4dcc491
+#include "VJkris.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -16,17 +14,14 @@ void ofApp::setup(){
     allSVJs.push_back( new VJIdleSet() ); // Idle
     allSVJs.push_back( new BaseSet() ); // Title / Chris
     allSVJs.push_back( new BaseSet() ); // Dasha
-<<<<<<< HEAD
     allSVJs.push_back( new VJSanie() ); // Sanie
-=======
     allSVJs.push_back( new BaseSet() ); // Sanie
->>>>>>> 9d2cf4f65d7aac0ef51f458f88a5d476b4dcc491
     allSVJs.push_back( new BaseSet() ); // Amanda
     allSVJs.push_back( new BaseSet() ); // Bella
     allSVJs.push_back( new BaseSet() ); // Qinqin
     allSVJs.push_back( new BaseSet() ); // Erica
     allSVJs.push_back( new BaseSet() ); // Ice
-    allSVJs.push_back( new BaseSet() ); // Kris
+    allSVJs.push_back( new VJkris() ); // Kris
     
     for ( int i = 0; i< allSVJs.size(); i++ ) { allSVJs[i]->setup(); }
     
