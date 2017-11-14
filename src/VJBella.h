@@ -9,7 +9,7 @@
 
 #include "BaseSet.h"
 
-class VJSanie: public BaseSet{
+class VJBella: public BaseSet{
     
 public:
     

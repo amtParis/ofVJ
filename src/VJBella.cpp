@@ -13,18 +13,18 @@ void VJSanie::setup(){
     circleSize = 20;
 }
 
-void VJSanie::update(){
+void VJBella::update(){
     
     circleSize = sin( ofGetElapsedTimef() ) * 30;
 }
 
-void VJSanie::draw(){
+void VJBella::draw(){
     //cout << "draw";
     ofSetColor(0,0,0);
     ofDrawEllipse( mouseX, ofGetHeight()/2, 50 + circleSize, 50 + circleSize);
 }
 
-void VJSanie::start(){
+void VJBella::start(){
     // sets up mouse move events
     ofAddListener(ofEvents().mouseMoved, this, &VJSanie::mouseMoved);
     ofAddListener(ofEvents().keyPressed, this, &VJSanie::keyPressed);
@@ -33,18 +33,18 @@ void VJSanie::start(){
     ofSetBackgroundColor(255);
 }
 
-void VJSanie::pause(){
+void VJBella::pause(){
     ofRemoveListener(ofEvents().mouseMoved, this, &VJSanie::mouseMoved);
     ofRemoveListener(ofEvents().keyPressed, this, &VJSanie::keyPressed);
     isPlaying = false;
 }
 
-void VJSanie::mouseMoved(ofMouseEventArgs & mouse){
+void VJBella::mouseMoved(ofMouseEventArgs & mouse){
     mouseX = mouse.x;
     mouseY = mouse.y;
 }
 
-void VJSanie::keyPressed(ofKeyEventArgs & keyboard){
+void VJBella::keyPressed(ofKeyEventArgs & keyboard){
     
     int key = keyboard.key;
     ofLog() << "key pressed: " << key;
