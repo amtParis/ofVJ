@@ -18,7 +18,7 @@ void ofApp::setup(){
     //   IDLE = 0, TITLE, DASHA, SANIE, AMANDA, BELLA, QINQIN, ERICA, ICE, KRIS
     allSVJs.push_back( new VJIdleSet() ); // Idle
     allSVJs.push_back( new BaseSet() ); // Title / Chris
-    allSVJs.push_back( new BaseSet() ); // Dasha
+    allSVJs.push_back( new VJDasha() ); // Dasha
     allSVJs.push_back( new VJSanie() ); // Sanie
     allSVJs.push_back( new VJAmanda() ); // Amanda
     allSVJs.push_back( new VJBella() ); // Bella
