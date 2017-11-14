@@ -7,6 +7,7 @@
 #include "VJIce.h"
 #include "VJAmanda.h"
 #include "VJBella.h"
+#include "VJDasha.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){

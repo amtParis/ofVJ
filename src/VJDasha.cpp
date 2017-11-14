@@ -16,7 +16,7 @@ void VJDasha::update(){
 }
 
 void VJDasha::draw(){
-    ofSetColor(244,0,0);
+    ofSetColor(0,255,0);
     ofDrawEllipse( mouseX, ofGetHeight()/2, 50 + circleSize, 50 + circleSize);
 }
 
