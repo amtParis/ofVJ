@@ -26,16 +26,16 @@ void VJBella::draw(){
 
 void VJBella::start(){
     // sets up mouse move events
-    ofAddListener(ofEvents().mouseMoved, this, &VJSanie::mouseMoved);
-    ofAddListener(ofEvents().keyPressed, this, &VJSanie::keyPressed);
+    ofAddListener(ofEvents().mouseMoved, this, &VJBella::mouseMoved);
+    ofAddListener(ofEvents().keyPressed, this, &VJBella::keyPressed);
     isPlaying = true;
     
     ofSetBackgroundColor(255);
 }
 
 void VJBella::pause(){
-    ofRemoveListener(ofEvents().mouseMoved, this, &VJSanie::mouseMoved);
-    ofRemoveListener(ofEvents().keyPressed, this, &VJSanie::keyPressed);
+    ofRemoveListener(ofEvents().mouseMoved, this, &VJBella::mouseMoved);
+    ofRemoveListener(ofEvents().keyPressed, this, &VJBella::keyPressed);
     isPlaying = false;
 }
 

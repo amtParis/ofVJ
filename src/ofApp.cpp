@@ -4,6 +4,8 @@
 #include "VJChris.h"
 #include "VJkris.h"
 #include "VJIce.h"
+#include "VJBella.h"
+
 //--------------------------------------------------------------
 void ofApp::setup(){
     
@@ -16,7 +18,7 @@ void ofApp::setup(){
     allSVJs.push_back( new BaseSet() ); // Dasha
     allSVJs.push_back( new VJSanie() ); // Sanie
     allSVJs.push_back( new BaseSet() ); // Amanda
-    allSVJs.push_back( new BaseSet() ); // Bella
+    allSVJs.push_back( new VJBella() ); // Bella
     allSVJs.push_back( new BaseSet() ); // Qinqin
     allSVJs.push_back( new BaseSet() ); // Erica
     allSVJs.push_back( new VJIce() ); // Ice
