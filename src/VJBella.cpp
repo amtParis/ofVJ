@@ -1,5 +1,5 @@
 //
-//  VJSanie.c
+//  VJBella.c
 //  ofVJSet
 //
 //  Created by csugrue on 11/9/17.
@@ -7,7 +7,7 @@
 
 #include "VJBella.h"
 
-void VJSanie::setup(){
+void VJBella::setup(){
     isPlaying = false;
     title = "*airh horns* v-v-vj beLLAAAAA *air horns*";
     circleSize = 20;
