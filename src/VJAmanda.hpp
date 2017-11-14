@@ -1,13 +1,22 @@
-//
-//  VJAmanda.hpp
-//  ofVJ
-//
-//  Created by Amanda Lewis on 11/14/17.
-//
+#pragma once
 
-#ifndef VJAmanda_hpp
-#define VJAmanda_hpp
+#include "BaseSet.h"
 
-#include <stdio.h>
-
-#endif /* VJAmanda_hpp */
+class VJAmanda: public BaseSet{
+    
+public:
+    
+    void setup();
+    void update();
+    void draw();
+    void start();
+    void pause();
+    
+    void mouseMoved(ofMouseEventArgs& mouse);
+    void keyPressed(ofKeyEventArgs & key);
+    
+    // by default has vars: mouseX, mouseY, title
+    
+    // custom vars
+    float circleSize;
+};
