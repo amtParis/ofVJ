@@ -5,9 +5,12 @@
 #include "VJkris.h"
 #include "VJFF.h"
 #include "VJIce.h"
+<<<<<<< HEAD
+#include "VJQin.h"
+=======
 #include "VJAmanda.h"
 #include "VJBella.h"
-#include "VJQin.h"
+>>>>>>> d6e4a9ba96091f465ffa13f24d58b4950ad904d9
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -20,10 +23,17 @@ void ofApp::setup(){
     allSVJs.push_back( new BaseSet() ); // Title / Chris
     allSVJs.push_back( new BaseSet() ); // Dasha
     allSVJs.push_back( new VJSanie() ); // Sanie
+<<<<<<< HEAD
+    allSVJs.push_back( new BaseSet() ); // Amanda
+    allSVJs.push_back( new BaseSet() ); // Bella
+    allSVJs.push_back( new VJQin() ); // Qinqin
+    allSVJs.push_back( new BaseSet() ); // Erica
+=======
     allSVJs.push_back( new VJAmanda() ); // Amanda
     allSVJs.push_back( new VJBella() ); // Bella
-    allSVJs.push_back( new VJQin() ); // Qinqin
+    allSVJs.push_back( new BaseSet() ); // Qinqin
     allSVJs.push_back( new VJFF() ); // Erica
+>>>>>>> d6e4a9ba96091f465ffa13f24d58b4950ad904d9
     allSVJs.push_back( new VJIce() ); // Ice
     allSVJs.push_back( new VJkris() ); // Kris
     
