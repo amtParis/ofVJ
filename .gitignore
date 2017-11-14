@@ -8,4 +8,6 @@ Desktop.ini
 *.make
 Makefile
 *.app/
-ofVJ.xcodeproj
+*.xcodeproj
+*.xcconfig
+*.plist
