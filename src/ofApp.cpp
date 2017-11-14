@@ -4,6 +4,7 @@
 #include "VJChris.h"
 #include "VJkris.h"
 #include "VJIce.h"
+#include "VJAmanda.h"
 //--------------------------------------------------------------
 void ofApp::setup(){
     
