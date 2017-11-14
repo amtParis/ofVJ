@@ -1,8 +1,15 @@
+//
+//  VJDasha.h
+//  ofVJSet
+//
+//  Created for Dasha on 14/9/17.
+//
+
 #pragma once
 
 #include "BaseSet.h"
 
-class VJAmanda: public BaseSet{
+class VJDasha: public BaseSet{
     
 public:
     
