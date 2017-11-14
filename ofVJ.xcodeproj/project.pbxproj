@@ -246,6 +246,21 @@
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
+			<key>E45177A40D2D494AEB9D21A9</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>VJAmanda.h</string>
+				<key>path</key>
+				<string>src/VJAmanda.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
 			<key>CCFDFAA6A3BED018A8F91CAF</key>
 			<dict>
 				<key>fileRef</key>
@@ -751,6 +766,7 @@
 					<string>E4B69E1F0A3A1BDC003C02F2</string>
 					<string>865CC04BE94EF2ADAD0F9736</string>
 					<string>31BB593263E7B86ED63C4EB3</string>
+					<string>E45177A40D2D494AEB9D21A9</string>
 					<string>9CA2C1F2812214A79AA4B635</string>
 					<string>C606951C0FEFE5AC72C6B810</string>
 					<string>7758111E205798E3C961B310</string>
