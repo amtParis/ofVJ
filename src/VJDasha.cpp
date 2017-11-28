@@ -263,6 +263,7 @@ void VJDasha::start(){
 }
 
 void VJDasha::pause(){
+    soundStream.close();
     ofRemoveListener(ofEvents().mouseMoved, this, &VJDasha::mouseMoved);
     ofRemoveListener(ofEvents().keyPressed, this, &VJDasha::keyPressed);
     isPlaying = false;
