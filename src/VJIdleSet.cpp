@@ -14,8 +14,6 @@ void VJIdleSet::setup(){
     
     //--------------- audio in
     int bufferSize = 128;
-    soundStream.setup(0, 2, 44100, bufferSize, 2);
-    soundStream.setInput(this);
     left.assign(bufferSize, 0.0);
     right.assign(bufferSize, 0.0);
     smoothedVol     = 0.0;
@@ -134,8 +132,8 @@ void VJIdleSet::draw(){
     cam.begin();
         fbo.getTexture().bind();
         shader.begin();
-        //shader.setUniform1f("time", smoothedVol*mouseX);
-        shader.setUniform1f("time", (mouseX*.01));
+        shader.setUniform1f("time", smoothedVol*mouseX);
+        //shader.setUniform1f("time", (mouseX*.01));
         shader.setUniformTexture("tex1", img.getTexture(), 1);
         plane.draw();
         shader.end();
@@ -146,10 +144,6 @@ void VJIdleSet::draw(){
 
 void VJIdleSet::start(){
     
-    int bufferSize = 128;
-    soundStream.setup(0, 2, 44100, bufferSize, 2);
-    soundStream.setInput(this);
-    
     // sets up mouse move events
     ofAddListener(ofEvents().mouseMoved, this, &VJIdleSet::mouseMoved);
     ofAddListener(ofEvents().keyPressed, this, &VJIdleSet::keyPressed);
@@ -159,8 +153,6 @@ void VJIdleSet::start(){
 }
 
 void VJIdleSet::pause(){
-    
-    soundStream.close();
     
     ofRemoveListener(ofEvents().mouseMoved, this, &VJIdleSet::mouseMoved);
     ofRemoveListener(ofEvents().keyPressed, this, &VJIdleSet::keyPressed);

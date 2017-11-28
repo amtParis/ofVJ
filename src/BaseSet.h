@@ -9,7 +9,7 @@
 
 #include "ofMain.h"
 
-class BaseSet{
+class BaseSet : public ofBaseSoundInput{
     
 public:
     
@@ -21,6 +21,7 @@ public:
     
     virtual void mouseMoved(ofMouseEventArgs& mouse){};
     virtual void keyPressed(ofKeyEventArgs & key){};
+    virtual void audioIn(float * input, int bufferSize, int nChannels){};
     
     int mouseX, mouseY;
     bool isPlaying;

@@ -20,9 +20,9 @@ void VJDasha::setup(){
     ofSetCircleResolution(80);
     ofBackground(54, 54, 54);
     
-    soundStream.printDeviceList();
+    //soundStream.printDeviceList();
     
-    int bufferSize = 256;
+    int bufferSize = 128;
     
     left.assign(bufferSize, 0.0);
     right.assign(bufferSize, 0.0);
@@ -32,9 +32,7 @@ void VJDasha::setup(){
     drawCounter		= 0;
     smoothedVol     = 0.0;
     scaledVol		= 0.0;
-//    soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
-    soundStream.setup(0, 2, 44100, bufferSize, 2);
-    soundStream.setInput(this);
+
     
     gui.setup(); // most of the time you don't need a name
 //    gui.add(filled.setup("fill", true));
@@ -43,7 +41,7 @@ void VJDasha::setup(){
     gui.add(colorB.setup("color B", 140, 00, 255));
     
     vidGrabber.setVerbose(true);
-    vidGrabber.setup(1280,720);
+    //vidGrabber.setup(1280,720);
 //    grayBg.allocate(320,240);
     grayDiff.allocate(1280,720);
 
@@ -250,10 +248,7 @@ void VJDasha::keyPressed(ofKeyEventArgs & keyboard){
 }
 
 void VJDasha::start(){
-    int bufferSize = 128;
-    soundStream.setup(0, 2, 44100, bufferSize, 2);
-    soundStream.setInput(this);
-    
+    vidGrabber.setup(1280,720);
     // sets up mouse move events
     ofAddListener(ofEvents().mouseMoved, this, &VJDasha::mouseMoved);
     ofAddListener(ofEvents().keyPressed, this, &VJDasha::keyPressed);
@@ -263,7 +258,7 @@ void VJDasha::start(){
 }
 
 void VJDasha::pause(){
-    soundStream.close();
+    vidGrabber.close();
     ofRemoveListener(ofEvents().mouseMoved, this, &VJDasha::mouseMoved);
     ofRemoveListener(ofEvents().keyPressed, this, &VJDasha::keyPressed);
     isPlaying = false;

@@ -17,7 +17,7 @@ enum Scenes{
 };
 
 
-class VJDasha : public BaseSet, ofBaseSoundInput {
+class VJDasha : public BaseSet {
 public:
     
     void setup();
@@ -57,7 +57,7 @@ public:
     ofSpherePrimitive sphere;
     ofBoxPrimitive box;
     ofEasyCam cam;
-    ofSoundStream soundStream;
+    //ofSoundStream soundStream;
 
     Scenes currentScene;
     ofxFloatSlider colorR;
