@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "BaseSet.h"
 #include "ofxOsc.h"
 #include "ofxGui.h"
 #include "ofxOpenCv.h"
@@ -10,30 +11,24 @@
 #define NUM_MSG_STRINGS 20
 
 enum Scenes{
-    IDLE,
-    SCENE2,
-    SCENE3
+    DASHA_IDLE = 0,
+    DASHA_SCENE2,
+    DASHA_SCENE3
 };
 
 
-class ofApp : public ofBaseApp {
+class VJDasha : public BaseSet, ofBaseSoundInput {
 public:
     
     void setup();
     void update();
     void draw();
     
-    void keyPressed(int key);
-    void keyReleased(int key);
-    void mouseMoved(int x, int y);
-    void mouseDragged(int x, int y, int button);
-    void mousePressed(int x, int y, int button);
-    void mouseReleased(int x, int y, int button);
-    void mouseEntered(int x, int y);
-    void mouseExited(int x, int y);
-    void windowResized(int w, int h);
-    void dragEvent(ofDragInfo dragInfo);
-    void gotMessage(ofMessage msg);
+    void mouseMoved(ofMouseEventArgs& mouse);
+    void keyPressed(ofKeyEventArgs & key);
+    
+    void start();
+    void pause();
     
     ofxOscReceiver receiver; 
     int current_msg_string;

@@ -1,8 +1,8 @@
-#include "ofApp.h"
+#include "VJDasha.h"
 
 //--------------------------------------------------------------
-void ofApp::setup(){
-    currentScene = IDLE;
+void VJDasha::setup(){
+    currentScene = DASHA_IDLE;
 
     shader.load("","dasha_data/shader.frag");
     receiver.setup(PORT);
@@ -32,7 +32,9 @@ void ofApp::setup(){
     drawCounter		= 0;
     smoothedVol     = 0.0;
     scaledVol		= 0.0;
-    soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
+//    soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
+    soundStream.setup(0, 2, 44100, bufferSize, 2);
+    soundStream.setInput(this);
     
     gui.setup(); // most of the time you don't need a name
 //    gui.add(filled.setup("fill", true));
@@ -53,8 +55,8 @@ void ofApp::setup(){
 
 
 //--------------------------------------------------------------
-void ofApp::update(){
-    if(currentScene == IDLE){
+void VJDasha::update(){
+    if(currentScene == DASHA_IDLE){
         // updates for idle scene
         // check for waiting messages
         while(receiver.hasWaitingMessages()){
@@ -73,7 +75,7 @@ void ofApp::update(){
             
         }
 
-    }else if(currentScene == SCENE2){
+    }else if(currentScene == DASHA_SCENE2){
 
         //lets scale the vol up to a 0-1 range
         scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 1.0, true);
@@ -86,7 +88,7 @@ void ofApp::update(){
             volHistory.erase(volHistory.begin(), volHistory.begin()+1);
         }
         
-    }else if(currentScene == SCENE3){
+    }else if(currentScene == DASHA_SCENE3){
         //lets scale the vol up to a 0-1 range
         scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 1.0, true);
         
@@ -121,8 +123,8 @@ void ofApp::update(){
 
 
 //--------------------------------------------------------------
-void ofApp::draw(){
-    if(currentScene == IDLE){
+void VJDasha::draw(){
+    if(currentScene == DASHA_IDLE){
         
         shader.begin();
         shader.setUniform2f("osc", oscX, oscY);
@@ -135,7 +137,7 @@ void ofApp::draw(){
         ofDrawBitmapString("Y-axis should be called /hfosc/verticalmotion", 30, 90);
 //        oceandeep.stop();
         
-    }else if(currentScene == SCENE2){
+    }else if(currentScene == DASHA_SCENE2){
 //        oceandeep.play();
 
         gui.draw();
@@ -149,7 +151,7 @@ void ofApp::draw(){
             sphere.drawWireframe();
         shader2.end();
         cam.end();
-    }else if(currentScene == SCENE3){
+    }else if(currentScene == DASHA_SCENE3){
 //        grayBg.draw(20,280);
         ofBackground(0, 0, 0);
         ofSetColor(45, 75, 200);
@@ -165,7 +167,7 @@ void ofApp::draw(){
 
 
 //--------------------------------------------------------------
-void ofApp::audioIn(float * input, int bufferSize, int nChannels){
+void VJDasha::audioIn(float * input, int bufferSize, int nChannels){
     
     float curVol = 0.0;
     
@@ -197,9 +199,10 @@ void ofApp::audioIn(float * input, int bufferSize, int nChannels){
 
 
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key){
+void VJDasha::keyPressed(ofKeyEventArgs & keyboard){
     // use key press to change scenes and make any operations that
     // only need to happen on change (not update or draw )
+    int key = keyboard.key;
     switch(key){
         case ' ':
             bLearnBakground = true;
@@ -208,15 +211,15 @@ void ofApp::keyPressed(int key){
             ofToggleFullscreen();
             break;
         case '1':
-            currentScene = IDLE;
+            currentScene = DASHA_IDLE;
             oceandeep.stop();
             break;
         case '2':
-            currentScene = SCENE2;
+            currentScene = DASHA_SCENE2;
             oceandeep.play();
             break;
         case '3':
-            currentScene = SCENE3;
+            currentScene = DASHA_SCENE3;
             oceandeep.stop();
             break;
     }
@@ -246,51 +249,27 @@ void ofApp::keyPressed(int key){
 //    }
 }
 
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key){
+void VJDasha::start(){
+    int bufferSize = 128;
+    soundStream.setup(0, 2, 44100, bufferSize, 2);
+    soundStream.setInput(this);
     
+    // sets up mouse move events
+    ofAddListener(ofEvents().mouseMoved, this, &VJDasha::mouseMoved);
+    ofAddListener(ofEvents().keyPressed, this, &VJDasha::keyPressed);
+    isPlaying = true;
+    
+    ofSetBackgroundColor(255);
 }
 
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y){
-    
+void VJDasha::pause(){
+    ofRemoveListener(ofEvents().mouseMoved, this, &VJDasha::mouseMoved);
+    ofRemoveListener(ofEvents().keyPressed, this, &VJDasha::keyPressed);
+    isPlaying = false;
 }
 
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-    
+void VJDasha::mouseMoved(ofMouseEventArgs & mouse){
+    mouseX = mouse.x;
+    mouseY = mouse.y;
 }
 
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){
-    
-}
