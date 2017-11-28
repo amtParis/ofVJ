@@ -12,9 +12,9 @@ void VJkris::setup(){
     title = "Kris";
     
     //my stuffffffffff
-    shader.load("","data_kris/shader.frag");
-    shader2.load("","data_kris/shader2.frag");
-    shader1.load("","data_kris/shader1.frag");
+    shader.load("","kris_data/shader.frag");
+    shader2.load("","kris_data/shader2.frag");
+    shader1.load("","kris_data/shader1.frag");
     
     currentScene = PHOTO;
     scenenumber = "1";
@@ -24,12 +24,12 @@ void VJkris::setup(){
     //fontname = "King-Basil-Lite.ttf";
     
     
-    font0.load("data_kris/King-Basil-Lite.ttf", 30);
+    font0.load("kris_data/King-Basil-Lite.ttf", 30);
     
-    font1.load("data_kris/King-Basil-Lite.ttf", 30);
-    font2.load("data_kris/Hangar Nine.otf", 30);
-    font3.load("data_kris/Heroic.ttf", 30);
-    font4.load("data_kris/zorque.ttf", 30);
+    font1.load("kris_data/King-Basil-Lite.ttf", 30);
+    font2.load("kris_data/Hangar Nine.otf", 30);
+    font3.load("kris_data/Heroic.ttf", 30);
+    font4.load("kris_data/zorque.ttf", 30);
     
     // init of incrementing values
     audioPan = 0.5f;
@@ -37,7 +37,7 @@ void VJkris::setup(){
     hue = background.getHue();
     
     // load song
-    music.loadSound("data_kris/song.mp3");
+    music.loadSound("kris_data/song.mp3");
     music.setVolume(0.0f);
     music.play();
     music.setLoop(true);
@@ -102,11 +102,11 @@ void VJkris::update(){
     }else if(currentScene == SKY_SCENE){
         // updates for sky scene
         music.setVolume(0.0f);
-        font0.load("data_kris/Hangar Nine.otf", 30);
+        font0.load("kris_data/Hangar Nine.otf", 30);
     }else if(currentScene == SUN_SCENE ){
         // updates for sun scene
         music.setVolume(1.0f);
-        font0.load("data_kris/Heroic.ttf", 30);
+        font0.load("kris_data/Heroic.ttf", 30);
     }else if(currentScene == IDLEZ ){
         // updates for idle scene
         music.setVolume(0.0f);
@@ -277,7 +277,7 @@ void VJkris::keyPressed(ofKeyEventArgs & keyboard){
     }
     
     //minnnnnnnnnne
-    shader.load("","data_kris/shader.frag");
+    shader.load("","kris_data/shader.frag");
     
     
     // use key press to change scenes and make any operations that
