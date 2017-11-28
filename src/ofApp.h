@@ -33,5 +33,6 @@ class ofApp : public ofBaseApp{
     
         // Sets
         vector<BaseSet*> allSVJs;
+        ofSoundStream soundStream;
 		
 };
