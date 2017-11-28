@@ -33,14 +33,14 @@ void VJIdleSet::setup(){
     
     //--------------- set up names list
     string the_names[] = {"DASHA","AMANDA","ICE","BELLA","QINQIN","ERICA","SANIE","KRIS"};
-    for(int i = 0; i < 7; i++){ allNames.push_back(the_names[i]); }
+    for(int i = 0; i < 8; i++){ allNames.push_back(the_names[i]); }
     currVj = 0;
     
     //--------------- set up fbo
     fbo.allocate(ofGetWidth(), ofGetHeight());
     plane.set(ofGetWidth(), ofGetHeight(), 50, 50);
     plane.mapTexCoordsFromTexture(fbo.getTexture());
-    shader.load("shader.vert","shader.frag");
+    shader.load("shaderIdle.vert","shaderIdle.frag");
     
     
     // create noise image for shader
