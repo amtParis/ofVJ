@@ -8,8 +8,9 @@
 #pragma once
 
 #include "BaseSet.h"
+#include "IdleParticle.h"
 
-class VJIdleSet: public BaseSet{
+class VJIdleSet: public BaseSet, ofBaseSoundInput{
     
 public:
     
@@ -22,8 +23,31 @@ public:
     void mouseMoved(ofMouseEventArgs& mouse);
     void keyPressed(ofKeyEventArgs & key);
     
-    // by default has vars: mouseX, mouseY, title
+    // audio
+    ofSoundStream soundStream;
+    void audioIn(float * input, int bufferSize, int nChannels);
+    vector <float> left;
+    vector <float> right;
+    float smoothedVol;
     
-    // custom vars
-    float circleSize;
+    // particles methods
+    void setupAttractors(string myName);
+    vector<ofPoint> getAttractorsFromTitle(string myName);
+    
+    // particles
+    vector<IdleParticle> particles;
+    
+    // vj names
+    vector<string> allNames;
+    int currVj;
+    ofTrueTypeFont    verdana30;
+    
+    // fbo effects
+    ofFbo fbo;
+    ofShader shader;
+    ofPlanePrimitive plane;
+    ofEasyCam cam;
+    ofImage img;
+
+    
 };

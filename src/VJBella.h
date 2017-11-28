@@ -1,5 +1,5 @@
 //
-//  VJSanie.h
+//  VJBella.h
 //  ofVJSet
 //
 //  Created by csugrue on 11/9/17.
@@ -9,7 +9,7 @@
 
 #include "BaseSet.h"
 
-class VJSanie: public BaseSet{
+class VJBella: public BaseSet{
     
 public:
     
