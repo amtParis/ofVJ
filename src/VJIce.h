@@ -9,7 +9,7 @@
 
 #include "BaseSet.h"
 
-class VJIce: public BaseSet, ofBaseSoundInput{
+class VJIce: public BaseSet{
     
 public:
     
@@ -45,6 +45,6 @@ public:
     float smoothedVol;
     float scaledVol;
     
-    ofSoundStream soundStream;
+    //ofSoundStream soundStream;
     
 };

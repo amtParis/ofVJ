@@ -10,7 +10,7 @@
 void VJIce::setup(){
     isPlaying = false;
     title = "VJ Ice";
-    int bufferSize = 256;
+    int bufferSize = 128;
     
     image.load("stars.jpg");
     image.resize(200, 200);
@@ -23,8 +23,8 @@ void VJIce::setup(){
     drawCounter        = 0;
     smoothedVol     = 0.0;
     scaledVol        = 0.0;
-    soundStream.setup( 0, 2, 44100, bufferSize, 4);
-    soundStream.setInput(this);
+    //soundStream.setup( 0, 2, 44100, bufferSize, 4);
+    //soundStream.setInput(this);
     
     mesh.setMode(OF_PRIMITIVE_LINES);
     mesh.enableColors();
