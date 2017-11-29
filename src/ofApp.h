@@ -26,9 +26,11 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-    
+        void audioIn(float * input, int bufferSize, int nChannels);
+
         void ChangeSet(VJSetState newSet);
     
+        ofSoundStream soundStream;
         VJSetState currentSet;
     
         // Sets

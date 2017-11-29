@@ -26,4 +26,25 @@ public:
     
     // custom vars
     float circleSize;
+    ofImage image;
+    ofMesh mesh;
+    ofMesh meshCopy;
+    ofEasyCam easyCam;
+    
+    vector<ofVec3f> offsets;
+    
+    void audioIn(float * input, int bufferSize, int nChannels);
+    
+    vector <float> left;
+    vector <float> right;
+    vector <float> volHistory;
+    
+    int     bufferCounter;
+    int     drawCounter;
+    
+    float smoothedVol;
+    float scaledVol;
+    
+    //ofSoundStream soundStream;
+    
 };

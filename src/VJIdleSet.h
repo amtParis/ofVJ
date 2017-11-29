@@ -10,7 +10,7 @@
 #include "BaseSet.h"
 #include "IdleParticle.h"
 
-class VJIdleSet: public BaseSet, ofBaseSoundInput{
+class VJIdleSet: public BaseSet{
     
 public:
     
@@ -24,7 +24,7 @@ public:
     void keyPressed(ofKeyEventArgs & key);
     
     // audio
-    ofSoundStream soundStream;
+    //ofSoundStream soundStream;
     void audioIn(float * input, int bufferSize, int nChannels);
     vector <float> left;
     vector <float> right;
