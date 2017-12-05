@@ -28,13 +28,20 @@ void ofApp::setup(){
     allSVJs.push_back( new VJIce() ); // Ice
     allSVJs.push_back( new VJkris() ); // Kris
     
-    for ( int i = 0; i< allSVJs.size(); i++ ) { allSVJs[i]->setup(); }
+    for ( int i = 0; i< allSVJs.size(); i++ ) {
+        allSVJs[i]->duration = 30.0;
+        allSVJs[i]->setup();
+    }
     
     int bufferSize = 128;
     soundStream.setup(0, 2, 44100, bufferSize, 2);
     soundStream.setInput(this);
     
     ChangeSet(IDLE);
+    
+    nextSet = IDLE;
+    useKeyControl = true;
+    autoVJ = true;
 }
 
 //--------------------------------------------------------------

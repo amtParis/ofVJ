@@ -11,6 +11,9 @@ void VJIdleSet::setup(){
     
     isPlaying = false;
     title = "Idle";
+    isDone = false;
+    timeStarted = ofGetElapsedTimef();
+    duration = 10.495;
     
     //--------------- audio in
     int bufferSize = 128;
@@ -38,14 +41,13 @@ void VJIdleSet::setup(){
     fbo.allocate(ofGetWidth(), ofGetHeight());
     plane.set(ofGetWidth(), ofGetHeight(), 50, 50);
     plane.mapTexCoordsFromTexture(fbo.getTexture());
-    shader.load("shaderIdle.vert","shaderIdle.frag");
+    shader.load("idle_data/shaderIdle.vert","idle_data/shaderIdle.frag");
     
-    
-    // create noise image for shader
+    //---------------  create noise image for shader
     int w = ofGetWidth();
     int h = ofGetHeight();
     img.allocate(ofGetWidth(), ofGetHeight(),OF_IMAGE_COLOR);
-
+    
     ofPixels pixels = img.getPixels();
     for(int x = 0; x < w; x++){
         for(int y = 0; y < h; y++){
@@ -56,8 +58,9 @@ void VJIdleSet::setup(){
         }
     }
     img.setFromPixels(pixels);
- 
-
+    
+    cam.tilt(180);
+    
 }
 
 void VJIdleSet::setupAttractors(string myName){
@@ -76,9 +79,9 @@ vector<ofPoint> VJIdleSet::getAttractorsFromTitle(string myName){
     ofFbo tempFbo;
     tempFbo.allocate(ofGetWidth(), ofGetHeight());
     tempFbo.begin();
-        ofBackground(0);
-        ofSetColor(255);
-        verdana30.drawString(myName, ofGetWidth()/2 - stringWidth/2,ofGetHeight()/2 + stringHeight/2);
+    ofBackground(0);
+    ofSetColor(255);
+    verdana30.drawString(myName, ofGetWidth()/2 - stringWidth/2,ofGetHeight()/2 + stringHeight/2);
     tempFbo.end();
     
     // get pixels
@@ -104,45 +107,49 @@ vector<ofPoint> VJIdleSet::getAttractorsFromTitle(string myName){
 
 void VJIdleSet::update(){
     
-   for(int i = 0; i < particles.size(); i++) particles[i].update();
-
+    for(int i = 0; i < particles.size(); i++) particles[i].update();
+    
+    if( ofGetElapsedTimef() - timeStarted > duration ) isDone = true;
 }
 
 void VJIdleSet::draw(){
     
-   
+    
     ofEnableAlphaBlending();
     
     fbo.begin();
-        ofClear(255,255,255,1);
-        ofSetColor(0);
-        ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
-        ofSetColor(255,80);
-        for(int i = 0; i < particles.size(); i++){
-            ofFill();
-            particles[i].draw();
-            ofNoFill();
-            particles[i].drawTrails();
-        }
+    ofClear(255,255,255,1);
+    ofSetColor(0);
+    ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+    ofSetColor(255,80);
+    for(int i = 0; i < particles.size(); i++){
+        ofFill();
+        particles[i].draw();
+        ofNoFill();
+        particles[i].drawTrails();
+    }
     fbo.end();
     fbo.draw(0,0);
     
     
     ofDisableAlphaBlending();
     cam.begin();
-        fbo.getTexture().bind();
-        shader.begin();
-        shader.setUniform1f("time", smoothedVol*mouseX);
-        //shader.setUniform1f("time", (mouseX*.01));
-        shader.setUniformTexture("tex1", img.getTexture(), 1);
-        plane.draw();
-        shader.end();
-        fbo.getTexture().unbind();
+    fbo.getTexture().bind();
+    shader.begin();
+    //shader.setUniform1f("time", smoothedVol);
+    shader.setUniform1f("time", (mouseX*.01));
+    shader.setUniformTexture("tex1", img.getTexture(), 1);
+    plane.draw();
+    shader.end();
+    fbo.getTexture().unbind();
     cam.end();
-
+    
 }
 
 void VJIdleSet::start(){
+    
+    timeStarted = ofGetElapsedTimef();
+    isDone = false;
     
     // sets up mouse move events
     ofAddListener(ofEvents().mouseMoved, this, &VJIdleSet::mouseMoved);
@@ -150,6 +157,11 @@ void VJIdleSet::start(){
     isPlaying = true;
     
     ofSetBackgroundColor(255);
+    
+    if( title != "Idle" ){
+        //soundPlayer.play();
+        setupAttractors(title);
+    }
 }
 
 void VJIdleSet::pause(){
@@ -157,6 +169,7 @@ void VJIdleSet::pause(){
     ofRemoveListener(ofEvents().mouseMoved, this, &VJIdleSet::mouseMoved);
     ofRemoveListener(ofEvents().keyPressed, this, &VJIdleSet::keyPressed);
     isPlaying = false;
+    //soundPlayer.stop();
 }
 
 void VJIdleSet::mouseMoved(ofMouseEventArgs & mouse){
@@ -167,11 +180,20 @@ void VJIdleSet::mouseMoved(ofMouseEventArgs & mouse){
 void VJIdleSet::keyPressed(ofKeyEventArgs & keyboard){
     
     int key = keyboard.key;
-     ofLog() << "key pressed: " << key;
+    ofLog() << "key pressed: " << key;
     
     shader.load("shaderIdle.vert","shaderIdle.frag");
-
     
+    switch(key){
+        case 'd': setupAttractors("DASHA"); break;
+        case 'a': setupAttractors("AMANDA");break;
+        case 'k': setupAttractors("KRIS");break;
+        case 'q': setupAttractors("QINQIN");break;
+        case 's': setupAttractors("SANIE");break;
+        case 'i': setupAttractors("ICE");break;
+        case 'b': setupAttractors("BELLA");break;
+        case 'e': setupAttractors("ERICA");break;
+    }
     // don't use reserved keys : 0, D, A, K , E, S, I, Q, B
     if( key == ' '){
         currVj++;
@@ -211,3 +233,4 @@ void VJIdleSet::audioIn(float * input, int bufferSize, int nChannels){
     
     
 }
+

@@ -21,10 +21,13 @@ public:
     
     virtual void mouseMoved(ofMouseEventArgs& mouse){};
     virtual void keyPressed(ofKeyEventArgs & key){};
-    virtual void audioIn(float * input, int bufferSize, int nChannels){};
+   // virtual void audioIn(float * input, int bufferSize, int nChannels){};
     
     int mouseX, mouseY;
     bool isPlaying;
     string title;
+    
+    float duration;
+    float timeStarted;
     
 };

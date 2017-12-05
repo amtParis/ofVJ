@@ -29,11 +29,19 @@ class ofApp : public ofBaseApp{
         void audioIn(float * input, int bufferSize, int nChannels);
 
         void ChangeSet(VJSetState newSet);
+        void ResetRandomOrder();
     
         ofSoundStream soundStream;
         VJSetState currentSet;
+        VJSetState nextSet;
+    
     
         // Sets
         vector<BaseSet*> allSVJs;
+    
+    
+        // Controls
+        bool useKeyControl;
+        bool autoVJ;
 		
 };
