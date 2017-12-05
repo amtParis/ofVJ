@@ -14,7 +14,7 @@ using namespace cv;
 
 void VJAmanda::setup(){
     currentState = DEBUG;
-    camera.setup(640,480);
+    
     
     shadercircle.load("amanda_data/shadercircle.vert","amanda_data/shadercircle.frag");
     myPlayer.loadMovie("amanda_data/dance.mp4");
@@ -52,7 +52,7 @@ void VJAmanda::setup(){
     //play song
     music.loadSound("amanda_data/marcus_kellis_theme.mp3");
     music.setVolume(1.0f);
-    music.play();
+   
     music.setLoop(true);
     
     ofSetVerticalSync(true);
@@ -120,6 +120,8 @@ void VJAmanda::draw(){
 }
 
 void VJAmanda::start(){
+    camera.setup(640,480);
+     music.play();
     // sets up mouse move events
     ofAddListener(ofEvents().mouseMoved, this, &VJAmanda::mouseMoved);
     ofAddListener(ofEvents().keyPressed, this, &VJAmanda::keyPressed);
@@ -129,6 +131,9 @@ void VJAmanda::start(){
 }
 
 void VJAmanda::pause(){
+    camera.close();
+     music.stop();
+    ofSetFrameRate(60);
     ofRemoveListener(ofEvents().mouseMoved, this, &VJAmanda::mouseMoved);
     ofRemoveListener(ofEvents().keyPressed, this, &VJAmanda::keyPressed);
     isPlaying = false;
