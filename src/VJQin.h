@@ -13,11 +13,10 @@
 #include "ofxFFTFile.h"
 #include "ofxFFTBase.h"
 
-enum gameState{
+enum gameStateQin{
     VERT,
     wFRAME,
-    SURFACE,
-    
+    SURFACE
 };
 
 class VJQin: public BaseSet{
@@ -64,5 +63,5 @@ public:
     ofSpherePrimitive sphere;
     ofxColorSlider color;
     
-    gameState currentState;
+    gameStateQin currentState;
 };

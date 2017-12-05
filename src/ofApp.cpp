@@ -30,6 +30,10 @@ void ofApp::setup(){
     
     for ( int i = 0; i< allSVJs.size(); i++ ) { allSVJs[i]->setup(); }
     
+    int bufferSize = 128;
+    soundStream.setup(0, 2, 44100, bufferSize, 2);
+    soundStream.setInput(this);
+    
     ChangeSet(IDLE);
 }
 
@@ -69,7 +73,14 @@ void ofApp::keyPressed(int key){
         case '0': ChangeSet(IDLE); break;
     }
 }
+//--------------------------------------------------------------
 
+void ofApp::audioIn(float * input, int bufferSize, int nChannels){
+    
+    allSVJs[currentSet]->audioIn(input, bufferSize, nChannels);
+    
+    
+}
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
 
