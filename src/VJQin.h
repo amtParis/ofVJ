@@ -8,6 +8,17 @@
 #pragma once
 
 #include "BaseSet.h"
+#include "ofMain.h"
+#include "ofxGui.h"
+#include "ofxFFTFile.h"
+#include "ofxFFTBase.h"
+
+enum gameState{
+    VERT,
+    wFRAME,
+    SURFACE,
+    
+};
 
 class VJQin: public BaseSet{
     
@@ -25,5 +36,33 @@ public:
     // by default has vars: mouseX, mouseY, title
     
     // custom vars
-    float circleSize;
+    ofxPanel gui;
+    int meshIndex;
+    float audioPeakDecay;
+    bool bUseAudioInput;
+    float audioMaxDecay;
+    bool audioMirror;
+    
+    // ofxFFTLive fftLive;
+    ofxFFTFile fftFile;
+    
+    ofSoundPlayer music;
+    
+    ofEasyCam camera;
+    
+    ofTexture meshTexture;
+    vector<ofMesh> meshes;
+    ofMesh meshWarped;
+    ofMesh exportobj;
+    
+    ofShader shader;
+    
+    float * audioData;
+    
+    float audioValue;
+    
+    ofSpherePrimitive sphere;
+    ofxColorSlider color;
+    
+    gameState currentState;
 };
