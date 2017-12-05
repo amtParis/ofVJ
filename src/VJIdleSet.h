@@ -48,6 +48,5 @@ public:
     ofPlanePrimitive plane;
     ofEasyCam cam;
     ofImage img;
-    bool isDone;
     
 };

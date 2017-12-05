@@ -28,7 +28,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
         void audioIn(float * input, int bufferSize, int nChannels);
 
-        void ChangeSet(VJSetState newSet);
+        void ChangeSet(VJSetState newSet, string name="");
         void ResetRandomOrder();
     
         ofSoundStream soundStream;

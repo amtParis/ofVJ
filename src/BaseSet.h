@@ -29,5 +29,6 @@ public:
     
     float duration;
     float timeStarted;
+    bool isDone;
     
 };
