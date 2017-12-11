@@ -9,7 +9,7 @@
 
 void VJBella::setup(){
     isPlaying = false;
-    title = "*airh horns* v-v-vj beLLAAAAA *air horns*";
+    title = "BELLA";//*airh horns* v-v-vj beLLAAAAA *air horns*";
     circleSize = 10;
 }
 

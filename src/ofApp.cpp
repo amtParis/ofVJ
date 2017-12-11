@@ -14,11 +14,15 @@
 void ofApp::setup(){
     
     //IDLE = 0, TITLE, DASHA, SANIE, AMANDA, BELLA, QINQIN, ERICA, ICE, KRIS
-    ofHideCursor();
+    //ofHideCursor();
     currentSet = TITLE;
     nextSet = IDLE;
     useKeyControl = true;
-    autoVJ = false;
+    showGui = false;
+    gui.setup();
+    gui.add( autoVJ.setup("auto mode", false) );
+    
+    
     
     //   IDLE = 0, TITLE, DASHA, SANIE, AMANDA, BELLA, QINQIN, ERICA, ICE, KRIS
     allSVJs.push_back( new VJIdleSet() ); // Idle
@@ -34,16 +38,19 @@ void ofApp::setup(){
     allSVJs.push_back( new BaseSet() ); // Empty
     
     for ( int i = 0; i< allSVJs.size(); i++ ) {
-        allSVJs[i]->duration = 60.0;
+        allSVJs[i]->duration = 10.0;
         allSVJs[i]->setup();
         
     }
+    
+    ResetRandomOrder();
     
     int bufferSize = 128;
     soundStream.setup(0, 2, 44100, bufferSize, 2);
     soundStream.setInput(this);
     
     ChangeSet(IDLE);
+    
 }
 
 //--------------------------------------------------------------
@@ -54,17 +61,21 @@ void ofApp::update(){
     if( currentSet == IDLE && allSVJs[currentSet]->isDone == true ){
         ChangeSet(nextSet);
     }else if( autoVJ == true && currentSet != IDLE && ofGetElapsedTimef() - allSVJs[currentSet]->timeStarted > allSVJs[currentSet]->duration){
-        VJSetState nextSet = VJSetState( int(ofRandom(2,10) ) );
-        ChangeSet( nextSet, allSVJs[nextSet]->title );
+        VJSetState nextSet = allSetStates[0];//VJSetState( int(ofRandom(2,10) ) );
+        ChangeSet(nextSet, allSVJs[nextSet]->title );
+        allSetStates.erase( allSetStates.begin() );
+        if(allSetStates.size() == 0 ) ResetRandomOrder();
     }
     
-    //ofLog() <<
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
     allSVJs[currentSet]->draw();
+    
+    //ofDisableDepthTest();
+    if(showGui) gui.draw();
     
 }
 
@@ -84,8 +95,21 @@ void ofApp::ChangeSet(VJSetState newSet, string nextTitle){
     allSVJs[currentSet]->timeStarted = ofGetElapsedTimef();
     
     ofLog() << "New Set: " << newSet << " " << allSVJs[currentSet]->title;
-    
+    ofShowCursor();
 }
+
+void ofApp::ResetRandomOrder(){
+    
+    allSetStates.clear();
+    
+    for ( int i = DASHA; i != LAST; i++ ){
+        VJSetState vj = static_cast<VJSetState>(i);
+        allSetStates.push_back(vj);
+    }
+    
+    std::random_shuffle(allSetStates.begin(), allSetStates.end());
+}
+
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     
@@ -101,14 +125,14 @@ void ofApp::keyPressed(int key){
             case 'I': ChangeSet(ICE, "ICE"); break;
             case '0': ChangeSet(IDLE, "Idle"); break;
             case '9': ChangeSet(IDLE, ""); break;
-            case OF_KEY_TAB: autoVJ = !autoVJ; break;
+            //case OF_KEY_TAB: autoVJ = !autoVJ; break;
+            case OF_KEY_TAB: showGui = !showGui; break;//case 'M': ofShowCursor(); break;
         }
     }else if(key == OF_KEY_DEL){
         useKeyControl= !useKeyControl;
     }
     
     ofLog() << "useKeyControl " << useKeyControl;
-    ofLog() << "autoVJ " << autoVJ;
 }
 
 //--------------------------------------------------------------

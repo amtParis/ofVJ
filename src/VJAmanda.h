@@ -64,7 +64,7 @@ public:
     float smoothedVol;
     float scaledVol;
     
-    ofSoundStream soundStream;
+    //ofSoundStream soundStream;
     
     ofSpherePrimitive sphere;
     ofFbo fboSphere;

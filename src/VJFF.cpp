@@ -9,7 +9,7 @@
 
 void VJFF::setup(){
     isPlaying = false;
-    title = "Idle";
+    title = "VJ FF";
     circleSize = 20;
 }
 

@@ -8,6 +8,7 @@
 #include "VJQin.h"
 
 void VJQin::setup(){
+    title = "QIN";
     gui.setup();
     shader.load("qinqin_data/shader.vert","qinqin_data/shader.frag");
     

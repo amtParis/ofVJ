@@ -9,7 +9,7 @@
 
 void VJIce::setup(){
     isPlaying = false;
-    title = "VJ Ice";
+    title = "ICE";
     int bufferSize = 128;
     
     image.load("stars.jpg");

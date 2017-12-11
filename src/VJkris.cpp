@@ -9,7 +9,7 @@
 
 void VJkris::setup(){
     isPlaying = false;
-    title = "Kris";
+    title = "KRIS";
     
     //my stuffffffffff
     shader.load("","kris_data/shader.frag");

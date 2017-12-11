@@ -2,7 +2,8 @@
 
 //--------------------------------------------------------------
 void VJDasha::setup(){
-    currentScene = DASHA_IDLE;
+    title = "DASHA";
+    currentScene = DASHA_SCENE2;
 
     shader.load("","dasha_data/shader.frag");
     receiver.setup(PORT);

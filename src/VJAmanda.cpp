@@ -13,6 +13,7 @@ using namespace cv;
 
 
 void VJAmanda::setup(){
+    title = "AMANDA";
     currentState = DEBUG;
     
     
@@ -32,7 +33,7 @@ void VJAmanda::setup(){
     //SOUND
     ofSetVerticalSync(true);
     
-    soundStream.printDeviceList();
+    //soundStream.printDeviceList();
     
     int bufferSize = 256;
     
@@ -66,7 +67,7 @@ void VJAmanda::update(){
     
     myPlayer.update();
     camera.update();
-    ofSoundUpdate();
+    //ofSoundUpdate();
     ofSetFrameRate(scaleFreq * 15);
     
     //scale vol up to 0-1 range
@@ -82,8 +83,9 @@ void VJAmanda::update(){
 void VJAmanda::draw(){
     if(currentState == DEBUG){
         ofBackground(0, 0, 0);
+        ofSetColor(255);
         camera.draw(ofRandom(0,ofGetWidth()-100),ofRandom(0,ofGetHeight()-100));
-        
+
     }else if(currentState == PLAY_MODE){
         ofSetFrameRate(30);
         

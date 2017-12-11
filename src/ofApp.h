@@ -1,11 +1,11 @@
 #pragma once
 
 #include "ofMain.h"
-
+#include "ofxGui.h"
 #include "BaseSet.h"
 
 enum VJSetState{
-  IDLE = 0, TITLE, DASHA, SANIE, AMANDA, BELLA, QINQIN, ERICA, ICE, KRIS
+  IDLE = 0, TITLE, DASHA, SANIE, AMANDA, BELLA, QINQIN, ERICA, ICE, KRIS, LAST
 };
 
 class ofApp : public ofBaseApp{
@@ -34,6 +34,7 @@ class ofApp : public ofBaseApp{
         ofSoundStream soundStream;
         VJSetState currentSet;
         VJSetState nextSet;
+        vector<VJSetState> allSetStates;
     
     
         // Sets
@@ -42,6 +43,9 @@ class ofApp : public ofBaseApp{
     
         // Controls
         bool useKeyControl;
-        bool autoVJ;
-		
+        bool showGui;
+        ofxPanel gui;
+        ofxToggle autoVJ;
+        ofxToggle showMouse;
+    
 };

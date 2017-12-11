@@ -9,7 +9,7 @@
 
 void VJSanie::setup(){
     isPlaying = false;
-    title = "Idle";
+    title = "SANIE";
     circleSize = 20;
 }
 
