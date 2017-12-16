@@ -215,7 +215,7 @@ void VJDasha::keyPressed(ofKeyEventArgs & keyboard){
             break;
         case '2':
             currentScene = DASHA_SCENE2;
-            oceandeep.play();
+            //oceandeep.play();
             break;
         case '3':
             currentScene = DASHA_SCENE3;

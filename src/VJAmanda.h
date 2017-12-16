@@ -6,7 +6,7 @@
 #include "ofxCV.h"
 #include "ofxGui.h"
 
-enum gameState{
+enum SanieGameState{
     //check value with name instead of number, in this case it increases so play mode will be 1 and game over will be 2, these values will stay the same
     DEBUG = 0,
     PLAY_MODE,
@@ -30,7 +30,7 @@ public:
     
     // custom vars
     //use this to check current state or switch between states
-    gameState currentState;
+    SanieGameState currentState;
     
     //load + play videos
     ofVideoGrabber camera;

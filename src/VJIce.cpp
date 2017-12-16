@@ -8,11 +8,27 @@
 #include "VJIce.h"
 
 void VJIce::setup(){
+    
+    gui.setup();
+    gui.add(circleResolution.setup("circle res", 5, 3, 10));
+    circleResolution.addListener(this, &VJIce::circleResolutionChanged);
+    
+    last = ofGetElapsedTimeMillis();
+    col.setHsb(0,255,255);
+    
+    shader.load("","ice_data/shader.frag");
+    smoothSpeed = 0.95;
+    smoothSpeed2 = 0.99;
+    
+    for(int i=0; i<NCIRC; i++){
+        myFunCircles[i].setup();
+    }
+    
     isPlaying = false;
     title = "ICE";
     int bufferSize = 128;
     
-    image.load("stars.jpg");
+    image.load("ice_data/stars.jpg");
     image.resize(200, 200);
     
     left.assign(bufferSize, 0.0);
@@ -88,9 +104,33 @@ void VJIce::setup(){
     }
 }
 
+void VJIce::circleResolutionChanged(int &circleResolution){
+    ofSetCircleResolution(circleResolution);
+}
+
 void VJIce::update(){
+    //scene1
+    if(currentScene == FIRST_SCENE){
+        ofBackground(col);
+        if(ofGetElapsedTimeMillis() - last > 50)
+        {
+            col.setHue(counter % 256);
+            counter ++;
+            last = ofGetElapsedTimeMillis();
+        }
+        
+        ofSetCircleResolution(circleResolution);
+        smoothX = smoothSpeed*smoothX + (1-smoothSpeed)*mouseX;
+        smoothY = smoothSpeed2*smoothY + (1-smoothSpeed2)*mouseY;
+        
+        for(int i=0; i<NCIRC; i++){
+            myFunCircles[i].update();
+        }
+        
+        //    scene2
+    } else if(currentScene == SECOND_SCENE){
     
-    scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 1.0, true);
+    scaledVol = ofMap(smoothedVol, 0.0, 0.025, 0.0, 1.0, true);
     
     //lets record the volume into an array
     volHistory.push_back( scaledVol );
@@ -119,11 +159,30 @@ void VJIce::update(){
         vert.y = pct*vert.y + (1-pct)*vertCopy.y;
         vert.z = pct*vert.z + (1-pct)*vertCopy.z;
         mesh.setVertex(i, vert);
-        
+        }
     }
 }
 
 void VJIce::draw(){
+    if(currentScene == FIRST_SCENE){
+        gui.draw();
+        shader.begin();
+        
+        shader.setUniform2f("u_resolution", ofGetWidth(), ofGetHeight());
+        shader.setUniform2f("u_mouse", mouseX, mouseY);
+        
+        shader.setUniform1f("u_smoothX", smoothX);
+        shader.setUniform1f("u_smoothY", smoothY);
+        
+        ofLog() << smoothedVol;
+
+        for(int i=0; i<NCIRC; i++){
+            myFunCircles[i].dim = 30 + smoothedVol*200;
+            myFunCircles[i].draw();
+        }
+        shader.end();
+        
+    }else if(currentScene == SECOND_SCENE){
     ofColor centerColor = ofColor(85, 78, 68);
     ofColor edgeColor(0, 0, 0);
     ofBackgroundGradient(centerColor, edgeColor, OF_GRADIENT_LINEAR);
@@ -133,7 +192,7 @@ void VJIce::draw(){
     mesh.draw();
     ofPopMatrix();
     easyCam.end();
-    
+    }
 }
 
 void VJIce::start(){
@@ -177,20 +236,24 @@ void VJIce::audioIn(float * input, int bufferSize, int nChannels){
     // this is how we get the root of rms :)
     curVol = sqrt( curVol );
     
-    smoothedVol *= 0.93;
-    smoothedVol += 0.07 * curVol;
+    smoothedVol *= 0.80;
+    smoothedVol += 0.2 * curVol;
     
     bufferCounter++;
     
 }
 
 void VJIce::keyPressed(ofKeyEventArgs & keyboard){
-    
     int key = keyboard.key;
      ofLog() << "key pressed: " << key;
     
-    // don't use reserved keys : 0, D, A, K , E, S, I, Q, B
     if( key == ' '){
-       
+        
+    }
+    // don't use reserved keys : 0, D, A, K , E, S, I, Q, B
+    if( key == '1'){
+       currentScene = FIRST_SCENE;
+    } else if ( key == '2'){
+        currentScene = SECOND_SCENE;
     }
 }

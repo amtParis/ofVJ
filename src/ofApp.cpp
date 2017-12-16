@@ -20,7 +20,9 @@ void ofApp::setup(){
     useKeyControl = true;
     showGui = false;
     gui.setup();
-    gui.add( autoVJ.setup("auto mode", false) );
+    gui.add( autoVJ.set("auto mode", true) );
+    autoVJ.addListener(this,&ofApp::OnAutoModeChange);
+                       //this, &ofApp::OnAutoModeChange);
     
     
     
@@ -38,7 +40,7 @@ void ofApp::setup(){
     allSVJs.push_back( new BaseSet() ); // Empty
     
     for ( int i = 0; i< allSVJs.size(); i++ ) {
-        allSVJs[i]->duration = 10.0;
+        allSVJs[i]->duration = 60.0;
         allSVJs[i]->setup();
         
     }
@@ -49,7 +51,7 @@ void ofApp::setup(){
     soundStream.setup(0, 2, 44100, bufferSize, 2);
     soundStream.setInput(this);
     
-    ChangeSet(IDLE);
+    ChangeSet(IDLE,"Idle");
     
 }
 
@@ -61,14 +63,27 @@ void ofApp::update(){
     if( currentSet == IDLE && allSVJs[currentSet]->isDone == true ){
         ChangeSet(nextSet);
     }else if( autoVJ == true && currentSet != IDLE && ofGetElapsedTimef() - allSVJs[currentSet]->timeStarted > allSVJs[currentSet]->duration){
-        VJSetState nextSet = allSetStates[0];//VJSetState( int(ofRandom(2,10) ) );
-        ChangeSet(nextSet, allSVJs[nextSet]->title );
-        allSetStates.erase( allSetStates.begin() );
-        if(allSetStates.size() == 0 ) ResetRandomOrder();
+        ChangeAutoSet();
+        //VJSetState nextSet = allSetStates[0];//VJSetState( int(ofRandom(2,10) ) );
+        //ChangeSet(nextSet, allSVJs[nextSet]->title );
+        //allSetStates.erase( allSetStates.begin() );
+        //if(allSetStates.size() == 0 ) ResetRandomOrder();
     }
     
 }
 
+void ofApp::ChangeAutoSet(){
+    VJSetState nextSet = allSetStates[0];//VJSetState( int(ofRandom(2,10) ) );
+    ChangeSet(nextSet, allSVJs[nextSet]->title );
+    allSetStates.erase( allSetStates.begin() );
+    if(allSetStates.size() == 0 ) ResetRandomOrder();
+}
+
+void ofApp::OnAutoModeChange(bool & autoVJ){
+    if(autoVJ){
+        ChangeAutoSet();
+    }
+}
 //--------------------------------------------------------------
 void ofApp::draw(){
     
@@ -103,8 +118,10 @@ void ofApp::ResetRandomOrder(){
     allSetStates.clear();
     
     for ( int i = DASHA; i != LAST; i++ ){
-        VJSetState vj = static_cast<VJSetState>(i);
-        allSetStates.push_back(vj);
+        if( static_cast<VJSetState>(i) != ERICA && static_cast<VJSetState>(i) != BELLA){
+            VJSetState vj = static_cast<VJSetState>(i);
+            allSetStates.push_back(vj);
+        }
     }
     
     std::random_shuffle(allSetStates.begin(), allSetStates.end());

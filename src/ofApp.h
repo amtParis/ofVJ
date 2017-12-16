@@ -29,7 +29,9 @@ class ofApp : public ofBaseApp{
         void audioIn(float * input, int bufferSize, int nChannels);
 
         void ChangeSet(VJSetState newSet, string name="");
+        void ChangeAutoSet();
         void ResetRandomOrder();
+        void OnAutoModeChange(bool & autoVJ);
     
         ofSoundStream soundStream;
         VJSetState currentSet;
@@ -45,7 +47,7 @@ class ofApp : public ofBaseApp{
         bool useKeyControl;
         bool showGui;
         ofxPanel gui;
-        ofxToggle autoVJ;
+        ofParameter<bool> autoVJ;
         ofxToggle showMouse;
     
 };

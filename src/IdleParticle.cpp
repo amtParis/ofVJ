@@ -23,7 +23,7 @@ void IdleParticle::update(){
     
     if( mode == PARTICLE_MODE_ATTRACT ){
         
-        ofPoint attractPt(ofGetMouseX(), ofGetMouseY());
+        ofPoint attractPt(0,0);//ofGetMouseX(), ofGetMouseY());
         if(attractPoints.size() > 0 ) attractPt = attractPoints[currentAttractor];
         
         trails.push_back(pos);

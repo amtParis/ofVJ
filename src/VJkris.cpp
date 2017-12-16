@@ -39,7 +39,7 @@ void VJkris::setup(){
     // load song
     music.loadSound("kris_data/song.mp3");
     music.setVolume(0.0f);
-    music.play();
+    //music.play();
     music.setLoop(true);
     
     // FFT initialization

@@ -28,7 +28,7 @@ void VJIdleSet::setup(){
     }
     
     //--------------- set up font
-    verdana30.load("verdana.ttf", 100, true, true);
+    verdana30.load("verdana.ttf", 120, true, true);
     verdana30.setLetterSpacing(1.15);
     verdana30.setLineHeight(0);
     
@@ -182,7 +182,7 @@ void VJIdleSet::keyPressed(ofKeyEventArgs & keyboard){
     int key = keyboard.key;
     ofLog() << "key pressed: " << key;
     
-    shader.load("shaderIdle.vert","shaderIdle.frag");
+    shader.load("idle_data/shaderIdle.vert","idle_data/shaderIdle.frag");
     
     switch(key){
         case 'd': setupAttractors("DASHA"); break;

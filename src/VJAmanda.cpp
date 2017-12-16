@@ -123,7 +123,7 @@ void VJAmanda::draw(){
 
 void VJAmanda::start(){
     camera.setup(640,480);
-     music.play();
+    // music.play();
     // sets up mouse move events
     ofAddListener(ofEvents().mouseMoved, this, &VJAmanda::mouseMoved);
     ofAddListener(ofEvents().keyPressed, this, &VJAmanda::keyPressed);
